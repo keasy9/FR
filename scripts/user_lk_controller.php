@@ -351,7 +351,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'request') {
             $data = [
                 'id_event'           => $id_event,
                 'show_type'          => $_POST['show_type'][$key] ?? null,
-                'show_name'          => !empty($_POST['show_name'][$key]) ? htmlspecialchars($_POST['show_name'][$key]) : null,
+                'show_name'          => !empty($_POST['show_name'][$key]) ? $_POST['show_name'][$key] : null,
                 'show_type_other'    => $_POST['show_type_other'][$key] ?? null,
                 'id_request_default' => $request_id,
             ];
