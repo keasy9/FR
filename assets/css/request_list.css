@@ -1,0 +1,43 @@
+#curator_edit {
+    width: 500px;
+    height: 218px;
+    margin: 0 auto;
+    padding: 18px 9px;
+    border-radius: 4px;
+    background: #fafafa;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    display: none;
+    opacity: 0;
+    z-index: 38;
+    text-align: center;
+}
+#curator_edit #curator_edit_cancel {
+    margin-right: 10px;
+}
+#overlay {
+    z-index: 37;
+    position: fixed;
+    background-color: rgba(0,0,0,.7);
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    cursor :pointer;
+    display :none;
+}
+#curator_edit .title{
+    font-size: 16px;
+}
+#curator_edit p.title{
+    font-size: 17px;
+    margin-top: 0;
+}
+#curator_edit #inputs .title{
+    margin: 10px auto;
+    display: inline-block;
+    width: 30%;
+    text-align: left;
+}
+#curator_edit #inputs input{
+    width: 60%;
+}

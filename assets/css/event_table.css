@@ -1,0 +1,5 @@
+.wp-list-table .column-time_start, .wp-list-table .column-time_end { width: 6%; }
+.wp-list-table .column-date { width: 12%; }
+.wp-list-table .column-type { width: 10%; }
+.wp-list-table .column-description { width: 10%; }
+.wp-list-table .column-track { width: 80px; }
