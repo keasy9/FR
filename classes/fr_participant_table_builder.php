@@ -139,19 +139,15 @@ class fr_participant_table_builder extends WP_List_Table
                     return 'Нет';
 
                 }
-                $tpl = '';
+                $events = [];
                 foreach ($item['events_map'] as $event) {
-                    $tpl .= '<li>';
-                    if ($event['type'] == 'Пленарное заседание') {
-                        $tpl .= 'Пленарное заседание ' . $event['description'];
-                    } elseif ($event['type'] == 'Трек') {
-                        $tpl .= $event['track'] . ' трек';
-                    } elseif ($event['type'] == 'Шорт-трек') {
-                        $tpl .= $event['short_track'] . ' шорт-трек ' . $event['track'] . ' трека';
+                    if ($event['type'] === 'Программное мероприятие') {
+                        $events[] = "<li>Программное мероприятие {$event['track']} сессии</li>";
+                    } elseif ($event['type'] === 'Другое') {
+                        $events[] = '<li>' . $event['type_custom'] ?? $event['type'] . '</li>';
                     }
-                    $tpl .= '</li>';
                 }
-                return '<ul>' . $tpl . '</ul>';
+                return '<ul>' . implode('', $events) . '</ul>';
             case 'part_type':
                 $tpl = $item['part_type']['type'];
                 if (empty($item['part_type']['shows'])) {

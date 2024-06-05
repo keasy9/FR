@@ -43,6 +43,7 @@
                                 <span class="title">Отчество (при наличии)</span>
                                 <span class="input-text-wrap"><input type="text" name="l_name" value="<?php echo $request_default['l_name'] ?? '' ?>"></span>
                             </label>
+                            <?php /*
                             <label>
                                 <span class="title">Дата рождения</span>
                                 <span class="input-text-wrap"><input type="date" name="birth_date" value="<?php echo $request_default['birth_date'] ?? '' ?>"></span>
@@ -57,8 +58,45 @@
                                    <label class="input-radio inline-radio" for="sex-f"><input type="radio" name="sex" value="0" id="sex-f" <?php echo $f_checked ?>>Жен</label>
                                </span>
                             </label>
+                            */ ?>
                         </div>
                         <div>
+                            <label>
+                                <span class="title">Страна*</span>
+                                <span class="input-select-wrap">
+                                    <select name="sci_title">
+                                        <?php
+                                            foreach ([
+                                                'Россия',
+                                                'Белоруссия',
+                                                'Армения',
+                                                'Казахстан',
+                                                'Киргизия',
+                                                'Китай',
+                                                'Монголия',
+                                                'Таджикистан',
+                                                'Туркменистан',
+                                                'Узбекистан',
+                                                'Африка',
+                                                'Индия',
+                                                'Бразилия',
+                                                'Япония',
+                                                'Корея',
+                                                'ОАЭ',
+                                                'Египет',
+                                                'Другая',
+                                            ] as $country) {
+                                        ?>
+                                                <option
+                                                    value="<?= $country ?>"
+                                                    <?= isset($request_default) && $request_default['country'] === $country ? 'selected' : '' ?>
+                                                    ><?= $country ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                   </select>
+                                </span>
+                            </label>
                             <label>
                                 <span class="title">Город*</span>
                                 <span class="input-text-wrap"><input type="text" name="city" value="<?php echo $request_default['city'] ?? '' ?>" required></span>
@@ -71,12 +109,14 @@
                                 <?php
                                 $ot2_checked = isset($request_default) && $request_default['org_type'] == 'Образование' ? 'checked' : '';
                                 $ot3_checked = isset($request_default) && $request_default['org_type'] == 'Государственный сектор' ? 'checked' : '';
+                                $ot4_checked = isset($request_default) && $request_default['org_type'] == 'Другое' ? 'checked' : '';
                                 ?>
                                 <span class="title">Тип организации</span>
                                 <span class="input-radio-wrap">
                                    <label class="input-radio block-radio" for="org_type_1"><input type="radio" name="org_type" value="Бизнес" id="org_type_1" checked>Бизнес</label>
                                    <label class="input-radio block-radio" for="org_type_2"><input type="radio" name="org_type" value="Образование" id="org_type_2" <?php echo $ot2_checked ?>>Образование</label>
                                    <label class="input-radio block-radio" for="org_type_3"><input type="radio" name="org_type" value="Государственный сектор" id="org_type_3" <?php echo $ot3_checked ?>>Государственный сектор</label>
+                                   <label class="input-radio block-radio" for="org_type_4"><input type="radio" name="org_type" value="Другое" id="org_type_4" <?php echo $ot4_checked ?>>Другое</label>
                                </span>
                             </label>
                             <label>
@@ -108,7 +148,7 @@
                                 <span class="input-text-wrap"><input type="email" name="email" value="<?php echo $request_default['email'] ?? $email ?? '' ?>" required></span>
                             </label>
                             <label>
-                                <span class="title">Контактный телефон*</span>
+                                <span class="title">Контактный телефон (сотовый)*</span>
                                 <span class="input-text-wrap"><input type="text" name="phone" value="<?php echo $request_default['phone'] ?? '' ?>" required></span>
                             </label>
                             <label>
@@ -155,7 +195,7 @@
                                     <label class="input-radio block-radio" for="part_type_2"><input type="radio" name="part_type" value="Спикер" id="part_type_2" <?php echo $pt2_checked ?>>Спикер</label>
                                     <?php } ?>
                                     <?php if (!$limitation || !in_array('part_type_3', $conf['disabledFields'])) { ?>
-                                    <label class="input-radio block-radio" for="part_type_3"><input type="radio" name="part_type" value="Модератор" id="part_type_3" <?php echo $pt3_checked ?>>Модератор</label>
+                                    <label class="input-radio block-radio" for="part_type_3"><input type="radio" name="part_type" value="Модератор" id="part_type_3" <?php echo $pt3_checked ?>>Модератор/Эксперт</label>
                                     <?php } ?>
                                 </span>
                             </label>
@@ -167,6 +207,16 @@
                     <fieldset>
                         <legend class="legend">Очное участие</legend>
                         <div>
+                            <label style="display: none;">
+                                <span class="title">Необходимо ли официальное приглашение?</span>
+                                <?php
+                                $checked = isset($request_live) && $request_live['required_invite'] == 0 ? 'checked' : '';
+                                ?>
+                                <span class="input-radio-wrap">
+                                    <label class="input-radio block-radio" for="invite_1"><input type="radio" name="required_invite" value="1" id="invite_1" checked>Да</label>
+                                    <label class="input-radio block-radio" for="invite_2"><input type="radio" name="required_invite" value="0" id="invite_2" <?php echo $checked ?>>Нет</label>
+                                </span>
+                            </label>
                             <label>
                                 <span class="title">Дата и время приезда</span>
                                 <span class="input-text-wrap"><input type="datetime-local" name="datetime_come" value="<?php echo $request_live['datetime_come'] ?? '' ?>"></span>
@@ -191,33 +241,27 @@
                                 <span class="title">Рейс отъезда</span>
                                 <span class="input-text-wrap"><input type="text" name="flight_gone" value="<?php echo htmlspecialchars($request_live['flight_gone']) ?? '' ?>"></span>
                             </label>
-                            <label style="display: none;">
-                                <span class="title">Необходимо ли официальное приглашение?</span>
-                                <?php
-                                $checked = isset($request_live) && $request_live['required_invite'] == 0 ? 'checked' : '';
-                                ?>
-                                <span class="input-radio-wrap">
-                                    <label class="input-radio block-radio" for="invite_1"><input type="radio" name="required_invite" value="1" id="invite_1" checked>Да</label>
-                                    <label class="input-radio block-radio" for="invite_2"><input type="radio" name="required_invite" value="0" id="invite_2" <?php echo $checked ?>>Нет</label>
-                                </span>
+                            <label>
+                                <span class="title">Гостиница (отель)</span>
+                                <span class="input-text-wrap"><input type="text" name="hotel" value="<?php echo htmlspecialchars($request_live['hotel']) ?? '' ?>"></span>
                             </label>
                         </div>
                     </fieldset>
                     <fieldset>
-                        <legend class="legend">Дополнительные мероприятия</legend>
+                        <legend class="legend">Дополнительные мероприятия в г.Белокуриха:</legend>
                         <div>
-                            <label>
+<!--                            <label>
                                 <span class="title">Планируете ли Вы участие в Торжественном приеме от имени ректора АлтГУ 15.09.2022?</span>
                                 <?php
-                                $checked = isset($request_live) && $request_live['part_reception'] == 0 ? 'checked' : '';
-                                ?>
+/*                                $checked = isset($request_live) && $request_live['part_reception'] == 0 ? 'checked' : '';
+                                */?>
                                 <span class="input-radio-wrap">
                                     <label class="input-radio block-radio" for="reception_1"><input type="radio" name="part_reception" value="1" id="reception_1" checked>Да</label>
-                                    <label class="input-radio block-radio" for="reception_2"><input type="radio" name="part_reception" value="0" id="reception_2" <?php echo $checked ?>>Нет</label>
+                                    <label class="input-radio block-radio" for="reception_2"><input type="radio" name="part_reception" value="0" id="reception_2" <?php /*echo $checked */?>>Нет</label>
                                 </span>
-                            </label>
+                            </label>-->
                             <label>
-                                <span class="title">Планируете ли Вы участие в Торжественном ужине 16.09.2022?</span>
+                                <span class="title">Планируете ли Вы участие в Торжественном ужине 03.10.2024?</span>
                                 <?php
                                 $checked = isset($request_live) && $request_live['part_dinner'] == 0 ? 'checked' : '';
                                 ?>
@@ -227,7 +271,7 @@
                                 </span>
                             </label>
                             <label>
-                                <span class="title">Планируете ли Вы участие в культурно-экскурсионной программе 17.09.2022?</span>
+                                <span class="title">Планируете ли Вы участие в культурно-экскурсионной программе 04.10.2024?</span>
                                 <?php
                                 $checked = isset($request_live) && $request_live['part_excursion'] == 0 ? 'checked' : '';
                                 ?>
@@ -324,7 +368,7 @@
                                     <span class="input-select-wrap">
                                     <select class="speaker_show_type_select" name="show_type[]">
                                         <?php
-                                        $types = ['Доклад', 'Мастер-класс', 'Визионерская лекция', 'Фокус-сессия', 'Экспертно-аналитическая сессия', 'Форсайт-сессия', 'Проектная сессия', 'Другое'];
+                                        $types = ['Доклад', 'Мастер-класс', 'Визионерская лекция', 'Фокус-сессия', 'Экспертно-аналитическая сессия', 'Форсайт-сессия', 'Проектная сессия', 'Участие в дискуссии', 'Другое'];
                                         foreach ($types as $type) {
                                             echo '<option value="', $type, '">', $type, '</option>';
                                         } ?>

@@ -56,10 +56,10 @@ class fr_participant_model
             ) {
                 continue;
             }
-            $additionalParts = 'Программа повышения квалификации: ' . ($user['part_qualify'] == '1' ? 'Да' : 'Нет');
-            $additionalParts .= "<br>" . 'Прием 15.09.22: ' . ($user['part_dinner'] == '1' ? 'Да' : 'Нет');
-            $additionalParts .= "<br>" . 'Ужин 16.09.22: ' . ($user['part_dinner'] == '1' ? 'Да' : 'Нет');
-            $additionalParts .= "<br>" . 'Экскурсия 17.09.22: ' . ($user['part_excursion'] == '1' ? 'Да' : 'Нет');
+            //$additionalParts = 'Программа повышения квалификации: ' . ($user['part_qualify'] == '1' ? 'Да' : 'Нет');
+            //$additionalParts .= "<br>" . 'Прием 15.09.22: ' . ($user['part_dinner'] == '1' ? 'Да' : 'Нет');
+            $additionalParts /*.*/= /*"<br>" . */'Ужин 03.10.24: ' . ($user['part_dinner'] == '1' ? 'Да' : 'Нет');
+            $additionalParts .= "<br>" . 'Экскурсия 04.10.24: ' . ($user['part_excursion'] == '1' ? 'Да' : 'Нет');
             $return[] = [
                 'id'               => $user['id'],
                 'user_id'          => $user['user_id'],
