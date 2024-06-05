@@ -1,6 +1,6 @@
 <div class="wrap">
     <h1 class="wp-heading-inline">Мероприятия</h1>
-    <a href="<?php echo site_url() ?>/wp-admin?page=event_edit" class="page-title-action">Добавить новое</a>
+    <a href="<?php echo site_url() ?>/wp-admin/admin.php?page=event_edit" class="page-title-action">Добавить новое</a>
     <hr class="wp-header-end">
     <form method="get">
         <?php
