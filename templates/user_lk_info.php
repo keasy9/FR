@@ -7,7 +7,7 @@ $nearEvent = array_filter($events ?? [], function ($event) use ($now) {
 });
 if (!empty($nearEvent)) {
     $nearEvent = array_shift($nearEvent);
-    $nearEvent['date_time'] = date('d.m.Y, h:i', strtotime($nearEvent['date'] . ' ' . $nearEvent['time_start']));
+    $nearEvent['date_time'] = date('d.m.Y, H:i', strtotime($nearEvent['date'] . ' ' . $nearEvent['time_start']));
 }
 $fmt = datefmt_create(
     'ru_RU',
@@ -31,16 +31,18 @@ if (!empty($nearEvent) || !empty($request_live['curator_fio'])) { ?>
                 </span>
             </span>
         </div>
-        <?php } if (!empty($nearEvent)) { ?>
-        <div class="lk-info-event">
-            <span class="dl">
-                <span class="dt">Ближайшее мероприятие</span>
-                <span class="dd">
-                    <div class="lk-info-title"><?= $nearEvent['title'] ?></div>
-                    <div class="lk-info-date"><?= $nearEvent['date_time'] ?></div>
-                    <div class="lk-info-place"><?= implode(', ', array_filter([$nearEvent['place_city'], $nearEvent['place_addr'], $nearEvent['place_room']])) ?></div>
+        <?php } ?>
+        <?php if (!empty($nearEvent)) { ?>
+            <div class="lk-info-event">
+                <span class="dl">
+                    <span class="dt">Ближайшее мероприятие</span>
+                    <span class="dd">
+                        <div class="lk-info-title"><?= $nearEvent['title'] ?></div>
+                        <div class="lk-info-date"><?= $nearEvent['date_time'] ?></div>
+                        <div class="lk-info-place"><?= implode(', ', array_filter([$nearEvent['place_city'], $nearEvent['place_addr'], $nearEvent['place_room']])) ?></div>
+                    </span>
                 </span>
-            </span>
+            </div>
         <?php } ?>
     </div>
 <?php }
