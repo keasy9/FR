@@ -26,7 +26,7 @@ class fr_participant_model
         $participants = $wpdb->get_results(
             '
             SELECT wp_users.ID as user_id, wp_users.user_email, frd.id, s_name, f_name, l_name, email, phone, user_registered, birth_date, sex, city, org_place, 
-                   org_name, org_type, sci_degree, sci_title, part_form, part_qualify, part_excursion, part_dinner, part_reception,
+                   org_name, org_type, sci_degree, sci_title, part_form, part_qualify, part_excursion, part_dinner,
                    file_photo, file_diplom, file_marriage_doc, '/*file_pcr,*/.' file_snils, '/*file_vaccine,*/.' curator_phone, curator_email, curator_fio, part_type
             FROM wp_users
                 LEFT JOIN fr_profile_photos fpp on wp_users.ID = fpp.user_id
