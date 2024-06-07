@@ -57,7 +57,7 @@
                                                                             <?php } ?>
                                                                             <div class="event-place"><?php echo $event['place_addr'], !empty($event['place_room']) ? ', ' . $event['place_room'] : '' ?></div>
                                                                             <?php if (!empty($event['track_title'])) { ?>
-                                                                                <div class="event-title"><?= $event['track_title'] ?></div>
+                                                                                <div class="event-track-title"><?= $event['track_title'] ?></div>
                                                                             <?php } ?>
                                                                             <?php if (!empty($event['title'])) { ?>
                                                                                 <div class="event-title"><?= $event['title'] ?></div>

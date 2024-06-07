@@ -814,3 +814,37 @@ border-radius: 4px;
 #map-download a:hover {
     color: #0a62e5;
 }
+
+.site-header-row {
+    grid-template-columns: auto 128px;
+}
+
+.site-header-item_profile-info {
+    line-height: .9em;
+    display: block;
+}
+
+.profile-info {
+    color: black;
+    display: block;
+    font-size: 14px;
+    text-align: right;
+}
+
+
+.profile-info_email {
+    font-size: .7em;
+}
+
+.mobile-drawer-content .profile-info {
+    text-align: left;
+}
+
+.site-header-section-right {
+    gap: .7em;
+}
+
+.event-track-title {
+    font-weight: bold;
+    font-size: .8em;
+}
