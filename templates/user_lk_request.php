@@ -355,7 +355,7 @@
                                             } elseif (mb_strpos($event['title'], $event['track'])) {
                                                 $title = "Программное мероприятие экспертной сессии {$event['track']}";
                                             } else {
-                                                $title = "Экспертная сессия {$event['track']}";
+                                                $title = "Трек {$event['track']}";
                                             }
 
                                             echo '<option value="', $event['id'], '" title="', htmlspecialchars($event['title']), '">', $title, '</option>';
@@ -421,7 +421,7 @@
                                             } elseif (mb_strpos($event['title'], $event['track'])) {
                                                 $title = "Программное мероприятие экспертной сессии {$event['track']}";
                                             } else {
-                                                $title = "Экспертная сессия {$event['track']}";
+                                                $title = "Трек {$event['track']}";
                                             }
 
                                             $selected = $request['id_event'] == $event['id'] ? ' selected' : '';

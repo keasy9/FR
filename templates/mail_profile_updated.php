@@ -106,7 +106,7 @@ $speakerStatusStrings = [
             } elseif (mb_strpos($event['title'], $event['track'])) {
                 $title = "Программное мероприятие экспертной сессии {$event['track']}";
             } else {
-                $title = "Экспертная сессия {$event['track']}";
+                $title = "Трек {$event['track']}";
             }
             ?>
         <tr>

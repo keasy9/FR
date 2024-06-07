@@ -10,7 +10,7 @@
                 $event['time_start'] = mb_substr($event['time_start'], 0, 5);
                 $event['time_end'] = mb_substr($event['time_end'], 0, 5);
                 if (!empty($event['track'])) {
-                    $event['event_track'] = 'Экспертная сессия ' . $event['track'];
+                    $event['event_track'] = 'Трек ' . $event['track'];
                 }
                 /* для вывода номера шорт-трека, больше не нужно
                 if (!empty($event['short_track'])) {

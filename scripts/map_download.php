@@ -103,7 +103,7 @@ foreach ($events as $date => &$times) {
                 $track_title = <<<HTML
                     <div>
                         <div style="background-color: #0001;{$track_title_color}font-size: 0.7em;color: black;padding: 5px 10px; border-radius: 4px; width: 115px;">
-                            &nbsp;&nbsp;Экспертная сессия {$event['track']}&nbsp;&nbsp;
+                            &nbsp;&nbsp;Трек {$event['track']}&nbsp;&nbsp;
                         </div>
                     </div>
                 HTML;
