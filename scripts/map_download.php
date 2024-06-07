@@ -23,40 +23,30 @@ HTML;
 $events = [];
 foreach ($selected_events as $event) {
     $time = mb_substr($event['time_start'], 0, 5) . ' - ' . mb_substr($event['time_end'], 0, 5);
-    $events[$event['date']][$time][] = $event;
+    $events[$event['date']][$event['place_city']][$time][] = $event;
 }
-foreach ($events as $date => &$times) {
-    //получение города для дня
-    $city_of_day = '';
-    foreach ($times as $events_in_time) {
-        foreach ($events_in_time as $event) {
-            if (!empty($event['place_city'])) {
-                $city_of_day = $event['place_city'];
-                break;
-            }
-        }
-    }
-    $date_str = $fmt->format(strtotime($date));
-    $html .= <<< HTML
+foreach ($events_list as $date => $cities) {
+    foreach ($cities as $city_of_day => &$times) {
+        $html .= <<< HTML
         <div style="display: flex;align-items: center;gap: 12px;border-radius: 4px;padding: 6px 0;border-bottom: solid 3px #e8e8f0;position: sticky;left: 0;">
-            <span style="font-weight: bold;font-size: 1.15rem;">{$date_str}&nbsp;&nbsp;</span>
+            <span style="font-weight: bold;font-size: 1.15rem;">{$date}&nbsp;&nbsp;</span>
             <span style="color: #444;">{$city_of_day}</span>
         </div>
     HTML;
 
 
-    foreach ($times as $time => &$events_in_time) {
-        //пересечение событий по времени
-        $time_crossing = count($events_in_time) > 1;
-        $time_crossing_notice = '';
-        if ($time_crossing) {
-            $time_crossing_notice = <<<HTML
+        foreach ($times as $time => &$events_in_time) {
+            //пересечение событий по времени
+            $time_crossing = count($events_in_time) > 1;
+            $time_crossing_notice = '';
+            if ($time_crossing) {
+                $time_crossing_notice = <<<HTML
                 <div style="font-size: 15px;width: 90%;color: red;margin-top: 10px;">
                     Выбраны пересекающиеся по времени мероприятия
                 </div>
             HTML;
-        }
-        $html .= <<< HTML
+            }
+            $html .= <<< HTML
         <br>
         <table>
             <tr style="width: 23%;">
@@ -68,47 +58,47 @@ foreach ($events as $date => &$times) {
         HTML;
 
 
-        foreach ($events_in_time as &$event) {
-            //адрес события
-            $address = $event['place_addr'];
-            if (!empty($event['place_room'])) {
-                $address .= ', ' . $event['place_room'];
-            }
-            //background-color для блока одного события
-            $background_color = $time_crossing ? 'background-color: #ffe5e5;' : 'background-color: #f0fff0;';
-            //color для заголовка одного события
-            $title_color = $time_crossing ? 'color: #dc143c;' : '';
-            $track_title = '';
-            if (!empty($event['track'])) {
-                //background-color для заголовка экспертной сессии
-                $track_title_color = 'background-color:';
-                switch ($event['track']) {
-                    case 1:
-                        $track_title_color .= '#ffa07a;';
-                        break;
-                    case 2:
-                        $track_title_color .= '#87ceeb;';
-                        break;
-                    case 3:
-                        $track_title_color .= '#9acd32;';
-                        break;
-                    case 4:
-                        $track_title_color .= '#ffd700;';
-                        break;
-                    case 5:
-                        $track_title_color .= '#ffc0cb;';
-                        break;
+            foreach ($events_in_time as &$event) {
+                //адрес события
+                $address = $event['place_addr'];
+                if (!empty($event['place_room'])) {
+                    $address .= ', ' . $event['place_room'];
                 }
-                //заголовок экспертной сессии
-                $track_title = <<<HTML
+                //background-color для блока одного события
+                $background_color = $time_crossing ? 'background-color: #ffe5e5;' : 'background-color: #f0fff0;';
+                //color для заголовка одного события
+                $title_color = $time_crossing ? 'color: #dc143c;' : '';
+                $track_title = '';
+                if (!empty($event['track'])) {
+                    //background-color для заголовка экспертной сессии
+                    $track_title_color = 'background-color:';
+                    switch ($event['track']) {
+                        case 1:
+                            $track_title_color .= '#ffa07a;';
+                            break;
+                        case 2:
+                            $track_title_color .= '#87ceeb;';
+                            break;
+                        case 3:
+                            $track_title_color .= '#9acd32;';
+                            break;
+                        case 4:
+                            $track_title_color .= '#ffd700;';
+                            break;
+                        case 5:
+                            $track_title_color .= '#ffc0cb;';
+                            break;
+                    }
+                    //заголовок экспертной сессии
+                    $track_title = <<<HTML
                     <div>
                         <div style="background-color: #0001;{$track_title_color}font-size: 0.7em;color: black;padding: 5px 10px; border-radius: 4px; width: 115px;">
                             &nbsp;&nbsp;Трек {$event['track']}&nbsp;&nbsp;
                         </div>
                     </div>
                 HTML;
-            }
-            $html .= <<< HTML
+                }
+                $html .= <<< HTML
                 <div style="{$background_color}padding: 12px;border-radius: 4px;margin:12px;">
                     <label>
                         {$track_title}
@@ -119,10 +109,11 @@ foreach ($events as $date => &$times) {
                     </label>
                 </div>
             HTML;
+            }
+            $html .= '</div>';
         }
-        $html .= '</div>';
+        $times = implode('', $times);
     }
-    $times = implode('', $times);
 }
 //конвертация html в pdf и выгрузка документа
 $mpdf = new \Mpdf\Mpdf();
