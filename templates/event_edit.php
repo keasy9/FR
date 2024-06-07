@@ -17,6 +17,17 @@
                 <fieldset class="inline-edit-col-left">
                     <legend class="inline-edit-legend"><?php echo empty($event) ? 'Новое событие' : 'Редактировать событие' ?></legend>
                     <div class="inline-edit-col">
+                        <label>
+                            <span class="title">Тип</span>
+                            <select name="type" id="fr_type_select">
+                                <option value="Программное мероприятие" <?php echo isset($event) && 'Программное мероприятие' == $event['type'] ? 'selected' : ''?>>Программное мероприятие</option>
+                                <option value="Другое" <?php echo isset($event) && 'Другое' == $event['type'] ? 'selected' : ''?>>Другое</option>
+                                <?php /*foreach ($event_types as $key => $type) {
+                                    $selected = isset($event) && $type == $event['type'] ? 'selected' : '';
+                                    echo '<option value="', $type, '" ', $selected, '>', $type, '</option>';
+                                } */?>
+                            </select>
+                        </label>
 
                         <label id="fr_track_num" <?php echo isset($event) && $event['type'] != 'Программное мероприятие' ? 'style="display: none"' : '' ?>>
                             <span class="title">Номер трека</span>
@@ -50,18 +61,6 @@
                         <label>
                             <span class="title">Описание</span>
                             <span class="input-text-wrap"><textarea name="description"><?php echo isset($event['description']) ? htmlspecialchars($event['description']) : '' ?></textarea></span>
-                        </label>
-
-                        <label>
-                            <span class="title">Тип</span>
-                            <select name="type" id="fr_type_select">
-                                <option value="Программное мероприятие" <?php echo isset($event) && 'Программное мероприятие' == $event['type'] ? 'selected' : ''?>>Программное мероприятие</option>
-                                <option value="Другое" <?php echo isset($event) && 'Другое' == $event['type'] ? 'selected' : ''?>>Другое</option>
-                                <?php /*foreach ($event_types as $key => $type) {
-                                    $selected = isset($event) && $type == $event['type'] ? 'selected' : '';
-                                    echo '<option value="', $type, '" ', $selected, '>', $type, '</option>';
-                                } */?>
-                            </select>
                         </label>
 
                         <label id="fr_other_type" <?php echo isset($event) && $event['type'] == 'Другое' ? '' : 'style="display: none"' ?>>
@@ -220,3 +219,13 @@
         </tr>
     </table>
 </form>
+
+<style>
+    .title {
+        line-height: 1.5em !important;
+    }
+
+    .inline-edit-col-left {
+        margin-right: .8em !important;
+    }
+</style>

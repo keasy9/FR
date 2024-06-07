@@ -37,7 +37,7 @@ class fr_event_model
                 } elseif ($event['type'] == 'Ланч-тайм') {
                     $event['title'] = $event['type'];
                 }
-                $event['place'] = implode(', ', [$event['place_city'], $event['place_addr'], $event['place_room']]);
+                $event['place'] = implode(', ', array_filter([$event['place_city'], $event['place_addr'], $event['place_room']]));
             }
             return $events;
         } else {
