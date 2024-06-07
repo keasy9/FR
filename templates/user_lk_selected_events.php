@@ -51,17 +51,16 @@
                                                                             </div>
                                                                         <?php } ?>
                                                                         <div class="event-place"><?php echo $event['place_addr'], !empty($event['place_room']) ? ', ' . $event['place_room'] : '' ?></div>
-                                                                        <div class="event-title">
-                                                                            <?php if ($event['type'] == 'Шорт-трек' && empty($event['title'])) {
-                                                                                echo "Программное мероприятие Экспертной сессии {$event['track']}";
-                                                                            } else {
-                                                                                echo $event['title'];
-                                                                            }
-                                                                            ?>
-                                                                        </div>
+                                                                        <?php if (!empty($event['track_title'])) { ?>
+                                                                            <div class="event-title"><?= $event['track_title'] ?></div>
+                                                                        <?php } ?>
+                                                                        <?php if (!empty($event['title'])) { ?>
+                                                                            <div class="event-title"><?= $event['title'] ?></div>
+                                                                        <?php } ?>
                                                                         <?php if (!empty($event['description'])) { ?>
                                                                             <div class="event-desc">
-                                                                                <?php echo $event['description']; ?></div>
+                                                                                <?= $event['description']; ?>
+                                                                            </div>
                                                                         <?php } ?>
                                                                     </label>
                                                                 </div>

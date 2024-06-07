@@ -2,6 +2,22 @@
 
 class fr_event_model
 {
+    private static array $fields = [
+        'date',
+        'time_start',
+        'time_end',
+        'type',
+        'type_custom',
+        'track',
+        //'short_track',
+        'title',
+        'description',
+        'place_city',
+        'place_addr',
+        'place_room',
+        'speaker_allow',
+        'track_title'
+    ];
 
     public static function select($id = null)
     {
@@ -70,7 +86,7 @@ class fr_event_model
     {
         global $wpdb;
 
-        $data = array_fill_keys(['date', 'time_start', 'time_end', 'type', 'type_custom', 'track', 'short_track', 'title', 'description', 'place_city', 'place_addr', 'place_room', 'speaker_allow'], null);
+        $data = array_fill_keys(self::$fields, null);
 
 
         // Значения по умолчанию

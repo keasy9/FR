@@ -3,6 +3,8 @@ $(function () {
     let $fr_other_type = $('#fr_other_type');
     let $fr_track_num = $('#fr_track_num');
     let $fr_speaker_allow = $('#fr_speaker_allow');
+    const trackTitle = document.getElementById('fr_track_title');
+
     $('#fr_reset_btn').on('click', function () {
         $fr_form_event.reset();
     });
@@ -19,11 +21,14 @@ $(function () {
             $fr_other_type.css('display', 'block');
             $fr_track_num.css('display', 'none');
             $fr_speaker_allow.css('display', 'none');
+            trackTitle.style.display = 'none';
 
         } else if ($value == 'Программное мероприятие') {
             $fr_other_type.css('display', 'none');
             $fr_track_num.css('display', 'block');
             $fr_speaker_allow.css('display', 'block');
+
+            trackTitle.style.display = 'block';
         }
 
     });

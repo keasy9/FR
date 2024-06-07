@@ -1,0 +1,1 @@
+ALTER TABLE fr_event ADD COLUMN track_name varchar(255) NULL;

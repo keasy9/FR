@@ -18,8 +18,32 @@
                     <legend class="inline-edit-legend"><?php echo empty($event) ? 'Новое событие' : 'Редактировать событие' ?></legend>
                     <div class="inline-edit-col">
 
+                        <label id="fr_track_num" <?php echo isset($event) && $event['type'] != 'Программное мероприятие' ? 'style="display: none"' : '' ?>>
+                            <span class="title">Номер трека</span>
+                            <!--<input type="select" name="track" value="<?php /*echo $event['track'] ?? 1 */ ?>">-->
+                            <select name="track">
+                                <option value="null" selected>нет</option>
+                                <?php
+                                $i = 1;
+                                while($i <= 10){
+                                    ?>
+                                    <option value="<?php echo $i?>" <?php echo isset($event) && $event['track'] == $i ? 'selected' : ''?>><?php echo $i?></option>
+                                    <?php
+                                    $i++;
+                                }
+                                ?>
+                            </select>
+                        </label>
+
+                        <label id="fr_track_title" <?= (isset($event) && $event['type'] != 'Программное мероприятие') ? 'style="display: none"' : '' ?>>
+                            <span class="title">Название трека</span>
+                            <span class="input-text-wrap">
+                                <textarea name="track_title"><?= isset($event['track_title']) ? htmlspecialchars($event['track_title']) : '' ?></textarea>
+                            </span>
+                        </label>
+
                         <label>
-                            <span class="title">Название</span>
+                            <span class="title">Название мероприятия</span>
                             <span class="input-text-wrap"><textarea name="title"><?php echo $event['title'] ?? '' ?></textarea></span>
                         </label>
 
@@ -59,23 +83,6 @@
                                 } */ ?>
                             </select>
                         </label>-->
-
-                        <label id="fr_track_num" <?php echo isset($event) && $event['type'] != 'Программное мероприятие' ? 'style="display: none"' : '' ?>>
-                            <span class="title">Номер трека</span>
-                            <!--<input type="select" name="track" value="<?php /*echo $event['track'] ?? 1 */ ?>">-->
-                            <select name="track">
-                                <option value="null" selected>нет</option>
-                                <?php
-                                $i = 1;
-                                while($i <= 10){
-                                    ?>
-                                    <option value="<?php echo $i?>" <?php echo isset($event) && $event['track'] == $i ? 'selected' : ''?>><?php echo $i?></option>
-                                <?php
-                                    $i++;
-                                }
-                                ?>
-                            </select>
-                        </label>
 
                         <label id="fr_speaker_allow" <?php echo isset($event) && $event['type'] != 'Программное мероприятие' ? 'style="display: none"' : '' ?>>
                             <span class="title">Выступления спикера</span>

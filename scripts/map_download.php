@@ -98,12 +98,22 @@ foreach ($events_list as $date => $cities) {
                     </div>
                 HTML;
                 }
+
+                foreach (['track_title', 'title'] as $key) {
+                    if (empty($event[$key])) {
+                        $event[$key] = '';
+                    } else {
+                        $event[$key] = "<div style=\"{$title_color}font-weight: bold; font-size: 1rem;margin-top: 12px;\">{$event[$key]}</div>";
+                    }
+                }
+
                 $html .= <<< HTML
                 <div style="{$background_color}padding: 12px;border-radius: 4px;margin:12px;">
                     <label>
                         {$track_title}
                         <div style="color: #555; font-size: 0.8rem;margin-top: 12px;">{$address}</div>
-                        <div style="{$title_color}font-weight: bold; font-size: 1rem;margin-top: 12px;">{$event['title']}</div>
+                        {$event['track_title']}
+                        {$event['title']}
                         <div style="color: #555; font-size: 0.8rem;margin-top: 12px;">{$event['description']}</div>
                         <br>
                     </label>
