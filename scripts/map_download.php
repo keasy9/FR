@@ -13,7 +13,7 @@ $html = <<<HTML
                     <img src="/wp-content/uploads/2022/01/logo.png" width="75" height="74" style="display:inline;vertical-align: middle">
                 </td>
                 <td>
-                    <div style="display: inline; vertical-align: middle;">V Международный образовательный форум «Алтай — Азия 2022»</div>
+                    <div style="display: inline; vertical-align: middle;">V Международный образовательный форум «Алтай — Азия 2024»</div>
                     <div style="display: inline; vertical-align: middle;font-size: 0.8em"><br>Маршрутная карта</div>
                 </td>
             </tr>

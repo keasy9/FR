@@ -23,8 +23,8 @@ session_start();
     <?php } ?>
     <div class="tab request-tab" <?php echo isset($request_default) ? 'style="display: none"' : '' ?>>
         <div class="request-form-block">
-            <?php if (new DateTime('now') >= new DateTime('2022-08-01')) { ?>
-                <div class="form-disabled">Редактирование профиля недоступно с 1 августа 2022 г.</div>
+            <?php if (new DateTime('now') >= new DateTime('2024-08-01')) { ?>
+                <div class="form-disabled">Редактирование профиля недоступно с 1 августа 2024 г.</div>
             <?php } else { ?>
                 <form method="post" enctype="multipart/form-data" id="request-form">
                     <input type="hidden" name="action" value="request">
@@ -283,7 +283,7 @@ session_start();
                                 <tr>
                                     <td>
                                         <label>
-                                            <span class="title">Планируете ли Вы участие в праздничном ужине-фуршете 17.09.2022?</span>
+                                            <span class="title">Планируете ли Вы участие в праздничном ужине-фуршете 17.09.2024?</span>
                                             <?php
                                             $checked = isset($request_live) && $request_live['part_dinner'] == 0 ? 'checked' : '';
                                             ?>
@@ -668,8 +668,8 @@ session_start();
             <?php if (isset($request_live)) { ?>
                 <div class="map curator-info">
                     <p class="curator-title title">Ваш персональный куратор для решения организационных вопросов:</p>
-                    <?php if (new DateTime('now') < new DateTime('2022-08-01')) { ?>
-                        <p>Контактные данные появятся с 01.08.2022 <i>в случае очного участия</i>.</p>
+                    <?php if (new DateTime('now') < new DateTime('2024-08-01')) { ?>
+                        <p>Контактные данные появятся с 01.08.2024 <i>в случае очного участия</i>.</p>
                     <?php } else {
                         echo '<p>Ваш куратор: ', $request_live['curator_fio'], '.</p>',
                         '<p>Вы можете связаться с ним по email: ', $request_live['curator_email'], ' или по телефону: ', $request_live['curator_phone'], '.</p>';

@@ -251,7 +251,7 @@
                         <legend class="legend">Дополнительные мероприятия в г.Белокуриха:</legend>
                         <div>
 <!--                            <label>
-                                <span class="title">Планируете ли Вы участие в Торжественном приеме от имени ректора АлтГУ 15.09.2022?</span>
+                                <span class="title">Планируете ли Вы участие в Торжественном приеме от имени ректора АлтГУ 15.09.2024?</span>
                                 <?php
 /*                                $checked = isset($request_live) && $request_live['part_reception'] == 0 ? 'checked' : '';
                                 */?>

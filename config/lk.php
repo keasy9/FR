@@ -3,7 +3,7 @@
 $conf = [];
 
 //дата ограничения регистрации
-$conf['dateRegisterLimit'] = '2022-09-06 00:00:00';
+$conf['dateRegisterLimit'] = '2024-09-06 00:00:00';
 
 //группы полей, отключенные после даты
 $conf['disabledFieldsets'] = [

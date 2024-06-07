@@ -371,7 +371,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'request') {
                                 //для тестирования
     if(!empty($dataUpdated) && !in_array($user->user_email, ['belorukov87@yandex.ru'])) {
         $headers = [
-            'From: Форум "Алтай-Азия 2022" <noreply@asu.ru>',
+            'From: Форум "Алтай-Азия 2024" <noreply@asu.ru>',
             'content-type: text/html',
         ];
         
@@ -380,7 +380,7 @@ if (!empty($_POST['action']) && $_POST['action'] == 'request') {
         $message=ob_get_contents();
         ob_end_flush();
         
-        wp_mail("altaiasia2022@asu.ru", "Изменения профиля пользователя {$user->user_email}", $message, $headers);
+        wp_mail("altaiasia2024@asu.ru", "Изменения профиля пользователя {$user->user_email}", $message, $headers);
     }
 
     $_SESSION['saved'] = true;
