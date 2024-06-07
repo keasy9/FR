@@ -71,7 +71,7 @@ class fr_event_table_builder extends WP_List_Table
             'time_start'  => 'Время начала',
             'time_end'    => 'Время окончания',
             'type'        => 'Тип мероприятия',
-            'track'       => 'Экспертная сессия',
+            'track'       => 'Трек',
             'title'       => 'Название мероприятия',
             'description' => 'Описание',
             'place'       => 'Место проведения',

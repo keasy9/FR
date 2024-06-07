@@ -61,7 +61,7 @@
                         </label>-->
 
                         <label id="fr_track_num" <?php echo isset($event) && $event['type'] != 'Программное мероприятие' ? 'style="display: none"' : '' ?>>
-                            <span class="title">Номер сессии</span>
+                            <span class="title">Номер трека</span>
                             <!--<input type="select" name="track" value="<?php /*echo $event['track'] ?? 1 */ ?>">-->
                             <select name="track">
                                 <option value="null" selected>нет</option>
