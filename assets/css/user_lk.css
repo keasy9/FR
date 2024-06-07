@@ -480,7 +480,7 @@ border-radius: 4px;
         display: flex;
         flex-direction: row;
         gap: 32px;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 
 }
