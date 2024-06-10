@@ -115,23 +115,34 @@ class fr_participant_model
 
     public static function set_curator($ids, $curator_info)
     {
+        global $wpdb;
+
         if (empty($ids)) {
             return false;
         }
-        $whereIds = [];
-        $params = $curator_info;
+
+        $query = $params = [];
         foreach ($ids as $id) {
-            $whereIds[] = '%d';
-            $params[] = (int)$id;
+            $query[] = '(%s, %s, %s, %d)';
+            $params[] = $curator_info['curator_fio'];
+            $params[] = $curator_info['curator_phone'];
+            $params[] = $curator_info['curator_email'];
+            $params[] = $id;
         }
-        global $wpdb;
+        $params[] = $curator_info['curator_fio'];
+        $params[] = $curator_info['curator_phone'];
+        $params[] = $curator_info['curator_email'];
+
         return $wpdb->query(
             $wpdb->prepare(
-                '
-            UPDATE fr_request_live 
-            SET curator_fio = %s, curator_phone = %s, curator_email = %s 
-            WHERE id_request_default IN (' . implode(', ', $whereIds) . ')
-            ',
+            "INSERT INTO fr_request_live (curator_fio, curator_phone, curator_email, id_request_default)
+                VALUES " . implode(',', $query) . "
+                    AS new
+                ON DUPLICATE KEY UPDATE 
+                    curator_fio = %s,
+                    curator_phone = %s,
+                    curator_email = %s,
+                    id_request_default = new.id_request_default",
                 $params
             )
         );

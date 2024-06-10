@@ -1,0 +1,1 @@
+ALTER TABLE fr_request_live ADD CONSTRAINT fr_request_live_pk UNIQUE (id_request_default);
