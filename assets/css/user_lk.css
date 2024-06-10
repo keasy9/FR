@@ -847,4 +847,5 @@ border-radius: 4px;
 .event-track-title {
     font-weight: bold;
     font-size: .8em;
+    line-height: 1.25;
 }
