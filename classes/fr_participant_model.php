@@ -21,6 +21,9 @@ class fr_participant_model
                 case 'not_empty_profile':
                     $filter = $wpdb->prepare('WHERE EXISTS(SELECT id from fr_request_default frd2 WHERE frd2.id_user = wp_users.ID)');
                     break;
+                case 'speakers':
+                    $filter = $wpdb->prepare('WHERE part_type = \'Спикер\'');
+                    break;
             }
         }
         $participants = $wpdb->get_results(

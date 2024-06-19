@@ -8,6 +8,7 @@
             <option value="part_type_remote" <?php echo isset($_GET['filter']) && $_GET['filter'] == 'part_type_remote' ? 'selected' : ''?>>Только дистанционное участие</option>
             <option value="empty_profile" <?php echo isset($_GET['filter']) && $_GET['filter'] == 'empty_profile' ? 'selected' : ''?>>Не заполнившие профиль</option>
             <option value="no_verified" <?php echo isset($_GET['filter']) && $_GET['filter'] == 'no_verified' ? 'selected' : ''?>>Не подвердившие email</option>
+            <option value="speakers" <?php echo isset($_GET['filter']) && $_GET['filter'] == 'speakers' ? 'selected' : ''?>>Спикеры</option>
         </select>
         <?php
         if (isset($GLOBALS['fr_action_ok'])) {
