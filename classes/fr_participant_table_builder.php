@@ -191,7 +191,11 @@ class fr_participant_table_builder extends WP_List_Table
         // Если не отсортировано, по умолчанию asc
         $order = $_GET['order'] ?? 'asc';
         // Определяем порядок сортировки
-        $result = strcmp($a[$orderby], $b[$orderby]);
+        if ($orderby === 'part_type') {
+            $result = strcmp($a[$orderby]['type'], $b[$orderby]['type']);
+        } else {
+            $result = strcmp($a[$orderby], $b[$orderby]);
+        }
         // Отправляем конечный порядок сортировки usort
         return ($order === 'asc') ? $result : -$result;
     }
